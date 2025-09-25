@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import moment from "moment"
-import { CardMensagem } from "./CardMensagem";
+import { CardBoxMensagem } from "./CardBoxMensagem";
 import { Input } from "@/components/ui/input";
 import { SearchCodeIcon, SearchIcon } from "lucide-react";
 
@@ -16,8 +16,8 @@ export const Search = () => {
         </Button>
       </div>
       <div className="max-h-100dvh overflow-auto">
-        <CardMensagem/>
-        <CardMensagem/>
+        <CardBoxMensagem/>
+        <CardBoxMensagem/>
       </div>
     </>
 

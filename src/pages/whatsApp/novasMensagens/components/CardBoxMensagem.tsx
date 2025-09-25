@@ -3,7 +3,7 @@ import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader,
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import moment from "moment"
 
-export const CardMensagem = () => {
+export const CardBoxMensagem = () => {
 
   return (
 

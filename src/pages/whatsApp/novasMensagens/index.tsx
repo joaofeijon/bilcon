@@ -5,12 +5,14 @@ import { Search } from "./components/Search";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
+import { Mensagem } from "./components/Mensagem";
+import { EllipsisVertical, SendIcon } from "lucide-react";
 
 function NovasMensagens() {
   moment.locale('pt-br');
 
   return (
-    <div className="flex justify-between h-full">
+    <div className="flex justify-between h-10/12 overflow-hidden">
       <div className="w-1/5 mr-5">
         <Search/>
       </div>
@@ -31,28 +33,42 @@ function NovasMensagens() {
             </div>
           </CardHeader>
           <Separator />
-          <CardContent className="flex flex-col ">
-            <Card className="float-left w-1/3">
-              <CardContent>
-                <p>Olá Marco, gostaria de fala com voce sobre a situacao da wbuy, poderiamos conversa?</p>
-              </CardContent>
-              <CardFooter className="justify-end">
-                <CardDescription>{moment("20111031", "YYYYMMDD").fromNow()}</CardDescription>
-              </CardFooter>
-            </Card>
-            <Card className="float-right w-1/3">
-              <CardContent>
-                <p>Fala vagabunda</p>
-              </CardContent>
-              <CardFooter className="justify-end">
-                <CardDescription>{moment("20111031", "YYYYMMDD").fromNow()}</CardDescription>
-              </CardFooter>
-            </Card>
+          <CardContent className="flex flex-col h-10/12 overflow-auto">
+            <Mensagem 
+              isMe={false}
+              messagem="Olá Marco, gostaria de fala com voce sobre a situacao da wbuy, poderiamos conversa?" 
+              time="20231010"
+            />
+            <Mensagem 
+              isMe={true}
+              messagem="fala o vagabunda" 
+              time="20231010"
+            />
+            <Mensagem 
+              isMe={true}
+              messagem="fala o vagabunda" 
+              time="20231010"
+            />
+            <Mensagem 
+              isMe={true}
+              messagem="fala o vagabunda" 
+              time="20231010"
+            />
+            <Mensagem 
+              isMe={true}
+              messagem="fala o vagabunda" 
+              time="20231010"
+            />
+            <Mensagem 
+              isMe={true}
+              messagem="fala o vagabunda" 
+              time="20231010"
+            />
           </CardContent>
           <CardFooter>
-            <Button className="mr-2"></Button>
+            <Button className="mr-2"><EllipsisVertical /></Button>
             <Input placeholder="Escreva..."/>
-            <Button className="ml-2"> </Button>
+            <Button className="ml-2"> <SendIcon /></Button>
           </CardFooter>
         </Card>
       </div>
