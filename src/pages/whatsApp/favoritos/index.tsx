@@ -7,11 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Mensagem } from "../components/Mensagem";
 import { EllipsisVertical, SendIcon } from "lucide-react";
 
-function NovasMensagens() {
+function Favoritos() {
   return (
     <div className="flex justify-between h-10/12 overflow-hidden">
       <div className="w-1/5 mr-5">
-        <Search showDate={true} />
+        <Search/>
       </div>
       <div className="w-4/5 " >
         <Card className="h-full">
@@ -74,4 +74,4 @@ function NovasMensagens() {
   )
 }
 
-export default NovasMensagens
+export default Favoritos;

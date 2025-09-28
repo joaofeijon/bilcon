@@ -43,19 +43,19 @@ const data = {
       items: [
         {
           title: "Novas Mensagens",
-          url: "#",
+          url: "/whatsapp/novasmensagens",
         },
         {
           title: "Conversas",
-          url: "#",
+          url: "/whatsapp/conversas",
         },
         {
           title: "Favoritos",
-          url: "#",
+          url: "/whatsapp/favoritos",
         },
         {
           title: "Conectar",
-          url: "#",
+          url: "/whatsapp/conectar",
         },
       ],
     },
@@ -66,11 +66,11 @@ const data = {
       items: [
         {
           title: "Conversas",
-          url: "#",
+          url: "/interno/conversas",
         },
         {
           title: "Grupos",
-          url: "#",
+          url: "/interno/grupos",
         },
       ],
     },
@@ -78,19 +78,19 @@ const data = {
   navSecondary: [
     {
       title: "Suporte",
-      url: "#",
+      url: "/suporte",
       icon: LifeBuoy,
     }
   ],
   projects: [
     {
       name: "Clientes",
-      url: "#",
+      url: "/clientes",
       icon: Frame,
     },
     {
       name: "Interno",
-      url: "#",
+      url: "/interno",
       icon: PieChart,
     },
   ],

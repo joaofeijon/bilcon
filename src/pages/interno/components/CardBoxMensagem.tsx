@@ -3,28 +3,34 @@ import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader,
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import moment from "moment"
 
-export const CardBoxMensagem = () => {
+interface CardBoxMensagemProps {
+  img: string;
+  name: string;
+  date: string;
+  message: string;
+  showDate: boolean;
+}
+
+export const CardBoxMensagem = ({ img, name, date, message, showDate }: CardBoxMensagemProps) => {
 
   return (
-
-    
     <Card className="mb-2">
     <CardHeader className="flex justify-between items-center  pb-2" >
       <div  className="flex items-center space-x-4 pb-2">
         <Avatar className="h-8 w-8 rounded-lg">
-          <AvatarImage src={"https://github.com/shadcn.png"} alt={"Agua de Sal"} />
-          <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+          <AvatarImage src={img} alt={name} />
+          <AvatarFallback className="rounded-lg">{name.charAt(0)}</AvatarFallback>
         </Avatar>
-        <CardTitle>Agua de Sal</CardTitle>
+        <CardTitle>{name}</CardTitle>
       </div>
       <div>
-        <CardDescription>{moment("20111031", "YYYYMMDD").fromNow()}</CardDescription>
+        {showDate && ( <CardDescription>{moment(date, "YYYYMMDD").fromNow()}</CardDescription> )}
       </div>
       
 
     </CardHeader>
     <CardContent>
-      <p>Olá Marco, gostaria de fala com voce sobre a situacao da wbuy, poderiamos conversa?</p>
+      <p>{message}</p>
     </CardContent>
     <CardFooter>
       <Button>Ir para mensagem</Button>
