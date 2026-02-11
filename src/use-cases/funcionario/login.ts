@@ -13,7 +13,7 @@ interface LoginUserUseCaseResponse {
   cargo: string
 }
 
-export class LoginUserUseCase {
+export class LoginFuncionarioUseCase {
   constructor(private FuncionarioRepository: FuncionarioRepository) { }
 
   async execute({

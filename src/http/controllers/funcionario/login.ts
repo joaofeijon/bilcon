@@ -2,8 +2,8 @@ import { z } from "zod"
 import { FastifyRequest, FastifyReply } from "fastify"
 
 
-import { makeFuncionarioUserProductUseCase } from "@/use-cases/funcionario/factories/makeFuncionarioUserProductUseCase"
 import { InvalidLoginError } from "@/use-cases/funcionario/erros/invalidLogin"
+import { makeFuncionarioUserProductUseCase } from "@/use-cases/funcionario/factories/makeFuncionarioUserProductUseCase"
 
 export async function login(request: FastifyRequest, reply: FastifyReply) {
   const loginBodySchema = z.object({

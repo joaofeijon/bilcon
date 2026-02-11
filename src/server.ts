@@ -8,4 +8,6 @@ app
 	})
 	.then(() => {
 		console.log(`👾 Run server from http://${env.HOST}:${env.PORT}`)
+	}).catch((err) => {
+		console.error("Error starting server:", err)
 	})
