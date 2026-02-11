@@ -4,11 +4,12 @@ import { env } from "./env"
 import fastifyJwt from "@fastify/jwt"
 import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
+import { funcionarioRoutes } from "./http/controllers/funcionario/routes"
 
 export const app = fastify()
 
 app.register(fastifyCors, {
-	origin: true, 
+	origin: true,
 	methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
 	credentials: true,
 })
@@ -25,8 +26,10 @@ app.register(fastifyJwt, {
 })
 
 app.get("/", (req, res) => {
-  res.send("Hello")
+	res.send("Hello")
 })
+
+app.register(funcionarioRoutes)
 
 app.setErrorHandler((error, _, reply) => {
 	if (error instanceof ZodError) {
