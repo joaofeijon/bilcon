@@ -1,0 +1,32 @@
+services:
+  mariadb:
+    image: mariadb:10.9
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mariadb:3306/${MYSQL_DATABASE}"
+      PORT: ${PORT}
+      HOST: ${HOST}
+      NODE_ENV: ${NODE_ENV}
+    depends_on:
+      - mariadb
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  mariadb_data:

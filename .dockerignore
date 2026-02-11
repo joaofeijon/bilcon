@@ -1,0 +1,9 @@
+node_modules
+dist
+*.log
+*.tsbuildinfo
+.env
+Dockerfile
+docker-compose.yml
+prisma/migrations
+prisma/dev.db
