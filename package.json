@@ -2,23 +2,28 @@
   "name": "bilcon",
   "version": "1.0.0",
   "description": "A Fastify application with MariaDB and Prisma",
-  "main": "src/app.ts",
+  "main": "src/server.ts",
   "scripts": {
-    "start": "ts-node src/app.ts",
+    "start": "ts-node src/server.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio"
   },
   "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/cors": "^11.2.0",
+    "@fastify/jwt": "^10.0.0",
     "@prisma/client": "^5.9.1",
     "dotenv": "^16.4.5",
-    "fastify": "^4.26.1"
+    "fastify": "^5.7.4",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/node": "^20.11.16",
+    "@types/node": "^20.19.33",
+    "eslint": "^10.0.0",
     "prisma": "^5.9.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
