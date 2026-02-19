@@ -1,5 +1,5 @@
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -8,12 +8,25 @@ generator client {
 }
 
 model Funcionario {
-  id        Int      @id @default(autoincrement())
-  nome      String
-  cargo     String
-  email     String   @unique
-  senha     String
-  permissao String
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
+  id               Int      @id @default(autoincrement())
+  nome             String
+  cargo            String
+  email            String   @unique
+  senha            String
+  permissao        String
+  jornandaTrabalho Int      @default(8)
+  updatedAt        DateTime @updatedAt
+  createdAt        DateTime @default(now())
+  pontos           Ponto[]
+}
+
+model Ponto {
+  id            Int      @id @default(autoincrement())
+  funcionarioId Int
+  dataHora      DateTime
+  tipo          String
+  updatedAt     DateTime @updatedAt
+  createdAt     DateTime @default(now())
+
+  funcionario Funcionario @relation(fields: [funcionarioId], references: [id])
 }

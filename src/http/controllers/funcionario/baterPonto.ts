@@ -5,13 +5,12 @@ import { FastifyRequest, FastifyReply } from "fastify"
 import { InvalidLoginError } from "@/use-cases/funcionario/erros/invalidLogin"
 import { makeFuncionarioLoginUseCase } from "@/use-cases/funcionario/factories/makeFuncionarioLoginUseCase"
 
-export async function login(request: FastifyRequest, reply: FastifyReply) {
-  const loginBodySchema = z.object({
-    email: z.string(),
-    password: z.string()
+export async function baterPonto(request: FastifyRequest, reply: FastifyReply) {
+  const baterPontoBodySchema = z.object({
+    tipo: z.string()
   })
 
-  const body = loginBodySchema.parse(request.body)
+  const body = baterPontoBodySchema.parse(request.body)
 
   try {
     const loginUseCase = makeFuncionarioLoginUseCase()
