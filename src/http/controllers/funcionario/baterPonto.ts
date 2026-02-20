@@ -4,21 +4,21 @@ import { FastifyRequest, FastifyReply } from "fastify"
 
 import { InvalidLoginError } from "@/use-cases/funcionario/erros/invalidLogin"
 import { makeFuncionarioLoginUseCase } from "@/use-cases/funcionario/factories/makeFuncionarioLoginUseCase"
+import { makeFuncionarioBaterPontoUseCase } from "@/use-cases/funcionario/factories/makeFunciorioBaterPontoUseCase"
 
 export async function baterPonto(request: FastifyRequest, reply: FastifyReply) {
   const baterPontoBodySchema = z.object({
-    tipo: z.string()
+    tipo: z.number()
   })
 
   const body = baterPontoBodySchema.parse(request.body)
 
   try {
-    const loginUseCase = makeFuncionarioLoginUseCase()
-    const { token, cargo } = await loginUseCase.execute(body)
+    const baterPontoUseCase = makeFuncionarioBaterPontoUseCase()
+    const { message } = await baterPontoUseCase.execute(body)
 
     reply.status(200).send({
-      token,
-      cargo
+      message
     })
   } catch (err) {
     if (err instanceof InvalidLoginError) {

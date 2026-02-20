@@ -1,15 +1,12 @@
-import { compare, hash } from "bcryptjs"
-import { sign } from "jsonwebtoken"
-import { InvalidLoginError } from "./erros/invalidLogin"
 import type { FuncionarioRepository } from "@/http/repositories/funcionarioRepository"
+import { InvalidPontoError } from "./erros/invalidPonto"
 
 interface baterPontoUseCaseRequest {
-  tipo: string
+  tipo: number
 }
 
 interface baterPontoUseCaseResponse {
-  token: string
-  cargo: string
+  message: string
 }
 
 export class baterPontoFuncionarioUseCase {
@@ -18,34 +15,19 @@ export class baterPontoFuncionarioUseCase {
   async execute({
     tipo
   }: baterPontoUseCaseRequest): Promise<baterPontoUseCaseResponse> {
-    const user = await this.FuncionarioRepository.findByEmail({ email })
+    const ponto = await this.FuncionarioRepository.getPontoToday({ idUsuario: 1 })
 
-    if (user == null) {
-      throw new InvalidLoginError()
-    }
+    if (!ponto.length && tipo !== 0) throw new InvalidPontoError()
 
-    const passwordMatch = await compare(password, user.senha)
+    if (ponto[ponto.length - 1].tipo !== String(tipo - 1)) throw new InvalidPontoError()
 
-    if (!passwordMatch) {
-      throw new InvalidLoginError()
-    }
-
-
-    const token = sign(
-      {
-        sub: user.id,
-        cargo: user.cargo,
-      },
-      process.env.JWT_SECRET as string,
-      {
-        expiresIn: "1d",
-      }
-    )
-
+    await this.FuncionarioRepository.insertPonto({
+      idUsuario: 1,
+      tipo: String(tipo)
+    })
 
     return {
-      token,
-      cargo: user.cargo
+      message: "Ponto batido com sucesso!"
     }
   }
 }
