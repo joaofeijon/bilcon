@@ -15,11 +15,15 @@ export class baterPontoFuncionarioUseCase {
   async execute({
     tipo
   }: baterPontoUseCaseRequest): Promise<baterPontoUseCaseResponse> {
+    console.log("passo1")
     const ponto = await this.FuncionarioRepository.getPontoToday({ idUsuario: 1 })
+    console.log("passo2", ponto)
 
     if (!ponto.length && tipo !== 0) throw new InvalidPontoError()
+    console.log("passo3")
 
-    if (ponto[ponto.length - 1].tipo !== String(tipo - 1)) throw new InvalidPontoError()
+    if (ponto.length && ponto[ponto?.length - 1]?.tipo !== String(tipo - 1)) throw new InvalidPontoError()
+    console.log("passo4")
 
     await this.FuncionarioRepository.insertPonto({
       idUsuario: 1,
