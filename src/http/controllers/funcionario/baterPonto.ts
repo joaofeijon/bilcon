@@ -9,11 +9,11 @@ import { InvalidPontoError } from "@/use-cases/funcionario/erros/invalidPonto"
 
 export async function baterPonto(request: FastifyRequest, reply: FastifyReply) {
   const baterPontoBodySchema = z.object({
-    tipo: z.number()
+    tipo: z.number("tipo é um campo obrigatorio!")
   })
 
   const body = baterPontoBodySchema.parse(request.body)
-  console.log(body)
+
   try {
     const baterPontoUseCase = makeFuncionarioBaterPontoUseCase()
     const { message } = await baterPontoUseCase.execute(body)
